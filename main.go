@@ -246,7 +246,7 @@ func release(source string, destination string, output string, ruleSetOutput str
 }
 
 func setActionOutput(name string, content string) {
-	os.Stdout.WriteString("::set-output name=" + name + "::" + content + "\n")
+	os.Stdout.WriteString(name + "=" + content + " >> $GITHUB_OUTPUT" + "\n")
 }
 
 func main() {
