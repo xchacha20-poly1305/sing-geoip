@@ -20,17 +20,14 @@ jobs:
         id: build
         run: go run -v .
       - name: Release rule sets
-        
         run: .github/release-rule-set.sh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Generate sha256 hash
-        
         run: |
           sha256sum geoip.db > geoip.db.sha256sum
           sha256sum geoip-cn.db > geoip-cn.db.sha256sum
       - name: Release release branch
-        
         run: .github/release-branch.sh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -40,7 +37,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Release geoip
-        
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ steps.build.outputs.tag }}
