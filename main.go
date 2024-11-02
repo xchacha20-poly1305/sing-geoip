@@ -92,7 +92,8 @@ func parse(binary []byte) (metadata maxminddb.Metadata, countryMap map[string][]
 			return
 		}
 		// idk why
-		code := strings.ToLower(country.RegisteredCountry.IsoCode)
+		// Loyalsoldier/geoip using country.Country.IsoCode
+		code := strings.ToLower(country.Country.IsoCode)
 		countryMap[code] = append(countryMap[code], ipNet)
 	}
 	err = networks.Err()
